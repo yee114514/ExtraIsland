@@ -167,6 +167,69 @@
                     </controls:SettingsExpanderItem>
                 </controls:SettingsExpander.Items>
             </controls:SettingsExpander>
+            <controls:SettingsExpander IconSource="{ci:FluentIconSource &#xF78B;}"
+                                       Header="AI 筛选"
+                                       Description="使用大模型对获取的句子进行内容筛选 (实验性功能)">
+                <controls:SettingsExpander.Footer>
+                    <ToggleSwitch IsChecked="{Binding Settings.AiFilterEnabled, Mode=TwoWay}"/>
+                </controls:SettingsExpander.Footer>
+                <controls:SettingsExpanderItem Content="API 类型"
+                                               Description="选择兼容的 OpenAI API 类型">
+                    <controls:SettingsExpanderItem.Footer>
+                        <ComboBox SelectedItem="{Binding Settings.AiFilterApiType}"
+                                  ItemsSource="{Binding AiFilterApiTypes}"
+                                  MinWidth="120">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource EnumDescriptionConverter}}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+                <controls:SettingsExpanderItem Content="接口地址"
+                                               Description="API 端点地址，自动拼接路径">
+                    <controls:SettingsExpanderItem.Footer>
+                        <TextBox Text="{Binding Settings.AiFilterEndpoint, Mode=TwoWay}"
+                                 MinWidth="200"/>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+                <controls:SettingsExpanderItem Content="API 密钥"
+                                               Description="你的 API Key">
+                    <controls:SettingsExpanderItem.Footer>
+                        <TextBox Text="{Binding Settings.AiFilterApiKey, Mode=TwoWay}"
+                                 PasswordChar="●"
+                                 MinWidth="150"/>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+                <controls:SettingsExpanderItem Content="模型"
+                                               Description="使用的模型名称 (如 gpt-4o-mini)">
+                    <controls:SettingsExpanderItem.Footer>
+                        <TextBox Text="{Binding Settings.AiFilterModel, Mode=TwoWay}"
+                                 MinWidth="120"/>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+                <controls:SettingsExpanderItem Content="联网搜索"
+                                               Description="启用后获取最新网络信息辅助判断 (仅 Responses API)">
+                    <controls:SettingsExpanderItem.Footer>
+                        <ToggleSwitch IsChecked="{Binding Settings.AiFilterEnableWebSearch, Mode=TwoWay}"/>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+                <controls:SettingsExpanderItem Content="深度思考"
+                                               Description="启用后使用 reasoning_effort (o系列模型) 并解析最后一行作为判定结果">
+                    <controls:SettingsExpanderItem.Footer>
+                        <ToggleSwitch IsChecked="{Binding Settings.AiFilterDeepThinking, Mode=TwoWay}"/>
+                    </controls:SettingsExpanderItem.Footer>
+                </controls:SettingsExpanderItem>
+                <TextBox Text="{Binding Settings.AiFilterInstructions, Mode=TwoWay}"
+                         Background="Transparent"
+                         AcceptsReturn="True"
+                         VerticalContentAlignment="Top"
+                         TextWrapping="Wrap"
+                         Watermark="样例：你是一名内容审查员。请根据以下标准判断句子是否适合在教室大屏幕上展示：&#x0a;排除内容：暴力、色情、政治敏感、广告、歧视性言论。&#x0a;鼓励展示：积极健康、富有哲理、励志向上的名言。&#x0a;你可以直接使用该样例或在此修改。"
+                         MinHeight="80"
+                         Margin="6,6,6,6"/>
+            </controls:SettingsExpander>
             <controls:SettingsExpander IconSource="{ci:FluentIconSource &#xE3DA;}"
                                        Header="排除列表"
                                        Description="包含位于此列表中的字符串的内容更新将被忽略,一行一个">

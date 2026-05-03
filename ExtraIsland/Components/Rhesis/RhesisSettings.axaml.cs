@@ -12,7 +12,7 @@ public partial class RhesisSettings : ComponentBase<RhesisConfig> {
         InitializeComponent();
     }
 
-    public MainConfigData MainConfig { get; set; } 
+    public MainConfigData MainConfig { get; set; }
         
     [GeneratedRegex("[^0-9]+")]
     private static partial Regex NumberRegex();
@@ -28,6 +28,11 @@ public partial class RhesisSettings : ComponentBase<RhesisConfig> {
     public List<RhesisConfig.AttributesDisplayRule> AttributesRules { get; } = [
         RhesisConfig.AttributesDisplayRule.Sametime,
         RhesisConfig.AttributesDisplayRule.Separate
+    ];
+
+    public List<AiFilterApiType> AiFilterApiTypes { get; } = [
+        AiFilterApiType.Chat,
+        AiFilterApiType.Responses
     ];
 }
 
